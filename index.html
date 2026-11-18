@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoTrip — Calculadora de CO₂</title>
+    <meta
+      name="description"
+      content="Calcule a emissão de CO₂ da sua viagem entre cidades brasileiras e compare meios de transporte."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <p class="hero__eyebrow">Desafio DIO · HTML · CSS · JS</p>
+        <h1 class="hero__brand">EcoTrip</h1>
+        <p class="hero__lead">
+          Estime o CO₂ da sua rota, compare bicicleta, carro, ônibus e caminhão, e veja o custo
+          aproximado de um crédito de carbono.
+        </p>
+        <a class="hero__cta" href="#calculadora">Calcular minha viagem</a>
+      </header>
+
+      <main class="main">
+        <section class="calculator" id="calculadora" aria-labelledby="calculator-title">
+          <h2 class="calculator__title" id="calculator-title">Monte a rota</h2>
+          <p class="calculator__subtitle">
+            Escolha origem e destino da base brasileira ou digite a distância na mão.
+          </p>
+
+          <form class="calculator__form" id="trip-form" autocomplete="off">
+            <div class="field">
+              <label class="field__label" for="origin">Origem</label>
+              <input
+                class="field__input"
+                id="origin"
+                name="origin"
+                list="origin-list"
+                placeholder="Ex.: São Paulo"
+                required
+              />
+              <datalist id="origin-list"></datalist>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="destination">Destino</label>
+              <input
+                class="field__input"
+                id="destination"
+                name="destination"
+                list="destination-list"
+                placeholder="Ex.: Rio de Janeiro"
+                required
+              />
+              <datalist id="destination-list"></datalist>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="distance">Distância (km)</label>
+              <input
+                class="field__input"
+                id="distance"
+                name="distance"
+                type="number"
+                min="1"
+                step="0.1"
+                placeholder="Preenchida pela base ou manual"
+                required
+              />
+              <p class="field__hint" id="distance-hint" hidden></p>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="transport">Meio de transporte</label>
+              <select class="field__input" id="transport" name="transport" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="bike">Bicicleta</option>
+                <option value="car">Carro</option>
+                <option value="bus">Ônibus</option>
+                <option value="truck">Caminhão</option>
+              </select>
+            </div>
+
+            <button class="calculator__submit" type="submit">Calcular emissão</button>
+          </form>
+        </section>
+
+        <section class="result" id="result" hidden aria-live="polite">
+          <h2 class="result__title">Resultado da viagem</h2>
+          <dl class="result__grid">
+            <div class="result__item">
+              <dt class="result__label">Distância</dt>
+              <dd class="result__value" id="result-distance">—</dd>
+            </div>
+            <div class="result__item">
+              <dt class="result__label">Meio</dt>
+              <dd class="result__value" id="result-transport">—</dd>
+            </div>
+            <div class="result__item result__item--highlight">
+              <dt class="result__label">Emissão estimada</dt>
+              <dd class="result__value" id="result-emission">—</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="comparison" id="comparison" hidden>
+          <h2 class="comparison__title">Comparação entre meios</h2>
+          <p class="comparison__subtitle">Mesma distância, quatro opções — do menos ao mais emissor.</p>
+          <div class="comparison__table-wrap">
+            <table class="comparison__table">
+              <thead>
+                <tr>
+                  <th scope="col">Posição</th>
+                  <th scope="col">Meio</th>
+                  <th scope="col">Emissão</th>
+                </tr>
+              </thead>
+              <tbody id="comparison-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="credits" id="credits" hidden>
+          <h2 class="credits__title">Crédito de carbono</h2>
+          <p class="credits__subtitle">
+            Estimativa simples: 1 t = 1000 kg. Preço de referência em
+            <code>config.js</code>.
+          </p>
+          <dl class="credits__grid">
+            <div class="credits__item">
+              <dt class="credits__label">Toneladas equivalentes</dt>
+              <dd class="credits__value" id="credit-tons">—</dd>
+            </div>
+            <div class="credits__item">
+              <dt class="credits__label">Custo estimado</dt>
+              <dd class="credits__value" id="credit-cost">—</dd>
+            </div>
+          </dl>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>
+          EcoTrip · lab DIO ·
+          <a href="https://github.com/sir-devtech/calculadora-ecotrip-dio">repositório</a>
+        </p>
+      </footer>
+    </div>
+
+    <script src="js/routes-data.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
