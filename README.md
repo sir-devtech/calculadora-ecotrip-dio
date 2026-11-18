@@ -14,7 +14,7 @@ Calcula a emissão estimada de uma viagem entre cidades brasileiras, compara bic
 
 Print de uma viagem SP → RJ de carro:
 
-![Viagem calculada São Paulo–Rio de Janeiro](docs/prints/viagem-calculada.png)
+![Viagem calculada São Paulo–Rio de Janeiro](docs/prints/viagem-sp-rio.png)
 
 ## Como o cálculo funciona
 
@@ -36,7 +36,7 @@ js/calculator.js    → emissão, comparação, custo
 js/ui.js            → DOM, autocomplete, painéis
 js/app.js           → eventos e boot
 .github/workflows/pages.yml
-docs/prints/viagem-calculada.png
+docs/prints/viagem-sp-rio.png
 ```
 
 Deploy: push na `main` dispara GitHub Actions → GitHub Pages (source = Actions).
